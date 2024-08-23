@@ -2,6 +2,7 @@ using AutoMapper;
 using LeftOverLove.Common.Dtos;
 using LeftOverLove.Common.Entities;
 using LeftOverLove.DataAccess;
+using LeftOverLove.WebAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LeftOverLove.WebAPI.Controllers;
@@ -12,14 +13,17 @@ public class ItemController : ControllerBase
 {
     private readonly AppDbContext _dbContext;
     private readonly IMapper _mapper;
+    private readonly ItemService _itemService;
 
     public ItemController(
         AppDbContext dbContext,
-        IMapper mapper
+        IMapper mapper,
+        ItemService itemService
     )
     {
         _dbContext = dbContext;
         _mapper = mapper;
+        _itemService = itemService;
     }
 
     /// <summary>Create new Item</summary>
@@ -42,5 +46,11 @@ public class ItemController : ControllerBase
         await _dbContext.SaveChangesAsync();
 
         return _mapper.Map<ItemDto>(newItem);
+    }
+
+    [HttpPost("AddPictures")]
+    public async Task AddPictures(IFormFileCollection pictures, [FromQuery] int itemId)
+    {
+        await this._itemService.AddPictures(pictures, itemId);
     }
 }
