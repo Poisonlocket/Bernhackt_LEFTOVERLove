@@ -1,0 +1,31 @@
+root = true
+
+# Default settings:
+[*]
+indent_style = space
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.cs]
+indent_size = 4
+csharp_style_namespace_declarations = file_scoped:warning
+
+[*.{cs,vb}]
+dotnet_diagnostic.IDE0160.severity = warning
+dotnet_diagnostic.IDE0161.severity = none
+dotnet_diagnostic.IDE0003.severity = none
+dotnet_diagnostic.IDE0009.severity = none
+dotnet_diagnostic.IDE0058.severity = none
+dotnet_diagnostic.CA1305.severity = none
+dotnet_diagnostic.IDE0011.severity = none
+dotnet_diagnostic.IDE1006.severity = none
+dotnet_diagnostic.IDE0270.severity = none
+dotnet_diagnostic.IDE0046.severity = none
+dotnet_diagnostic.IDE0320.severity = none
+dotnet_diagnostic.IDE0028.severity = none
+dotnet_diagnostic.CA1822.severity = none
+
+[*.yml]
+indent_size = 2
