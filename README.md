@@ -26,6 +26,24 @@
 
 ## CI / Pipelines
 
+## Generate openapi client
+
+With Docker (zsh):
+
+```sh
+cd frontend
+```
+
+```sh
+docker run --rm \
+  -v ${PWD}:/local openapitools/openapi-generator-cli generate \
+  -i /local/openapi.yml \
+  -g typescript-fetch \
+  -o /local/src/lib/leftoverlove_client
+```
+
+Note: if using zsh shell it is `{$PWD}` instead of `${PWD}`.
+
 ---
 
 ## Authors

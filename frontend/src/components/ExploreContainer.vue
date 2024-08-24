@@ -1,11 +1,19 @@
 <template>
   <div id="container">
     <strong class="text-red-200">{{ name }}</strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI
+      Components</a></p>
   </div>
 </template>
 
 <script setup lang="ts">
+import {Configuration, ConfigurationParameters, CustomerApi} from "@/lib/leftoverlove_client";
+
+// TODO: Example how you can use the generated client
+const parameter: ConfigurationParameters = {basePath: "http://localhost:5000"}
+const config = new Configuration(parameter)
+const api = new CustomerApi(config)
+
 defineProps({
   name: String,
 });
