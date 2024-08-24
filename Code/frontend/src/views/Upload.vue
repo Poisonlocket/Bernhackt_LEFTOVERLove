@@ -2,14 +2,14 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-title>Something Left?</ion-title>
+        <ion-title>Share your leftover food</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
       <FilePickerComponent/>
       <ion-header collapse="condense">
         <ion-toolbar>
-          <ion-title color="primary" size="large">Messages</ion-title>
+          <ion-title color="primary" size="large">Share</ion-title>
         </ion-toolbar>
       </ion-header>
     </ion-content>

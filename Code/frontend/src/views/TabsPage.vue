@@ -13,9 +13,9 @@
           <ion-label>Food</ion-label>
         </ion-tab-button>
 
-        <ion-tab-button tab="messages" href="/tabs/messages">
-          <ion-icon aria-hidden="true" :icon="chatboxOutline" />
-          <ion-label>Messages</ion-label>
+        <ion-tab-button tab="upload" href="/tabs/upload">
+          <ion-icon aria-hidden="true" :icon="shareOutline" />
+          <ion-label>Share</ion-label>
         </ion-tab-button>
 
         <ion-tab-button tab="user" href="/tabs/user">
@@ -29,5 +29,5 @@
 
 <script setup lang="ts">
 import { IonTabBar, IonTabButton, IonTabs, IonLabel, IonIcon, IonPage, IonRouterOutlet } from '@ionic/vue';
-import { restaurantOutline, mapOutline, chatboxOutline, personCircleOutline } from 'ionicons/icons';
+import { restaurantOutline, mapOutline, shareOutline, personCircleOutline } from 'ionicons/icons';
 </script>

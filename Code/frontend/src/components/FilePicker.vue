@@ -1,27 +1,61 @@
 <template>
-  <div>
-    <ion-button expand="full" @click="openFilePicker">Select Files</ion-button>
-    <input type="file" ref="fileInput" @change="onFileChange" style="display:none" multiple accept="image/*"/>
+  <ion-page>
 
-    <div v-if="images.length" class="image-list">
-      <div v-for="(image, index) in images" :key="index" class="image-preview">
-        <img :src="image.url" :alt="image.name"/>
-        <ion-button @click="createItem(image)">Sponsor your Food</ion-button>
+    <ion-content>
+      <ion-header collapse="condense">
+        <ion-toolbar>
+          <ion-title color="primary" size="large">Share</ion-title>
+          <ion-subtitle class="p-4 text-xl text-neutral-400">Share your food with friends</ion-subtitle>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-list class="flex flex-col content-center gap-4">
+          <ion-item>
+            <ion-input label="Titel"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input label="Beschreibung"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Ablaufdatum</ion-label>
+            <ion-datetime-button datetime="datetime"></ion-datetime-button>
+            <ion-modal :keep-contents-mounted="true">
+              <ion-datetime id="datetime" presentation="date" value="2023-11-02T01:22:00"
+                :format-options="formatOptions"></ion-datetime>
+            </ion-modal>
+          </ion-item>
+        </ion-list>
+        
+        <ion-button class="w-full mt-8" @click="openFilePicker">Upload image</ion-button>
+        <ion-button class="w-full mt-8" @click="submitForm()">Submit data</ion-button>
+        <input type="file" ref="fileInput" @change="onFileChange" style="display:none" multiple accept="image/*" />
+      </ion-content>
+
+      <div v-if="images.length" class="mt-8">
+        <div v-for="(image, index) in images" :key="index" class="flex flex-col items-center mb-4">
+          <img :src="image.url" :alt="image.name" />
+          <ion-button @click="createItem(image)">Sponsor your Food</ion-button>
+        </div>
       </div>
-    </div>
-  </div>
+
+    </ion-content>
+  </ion-page>
 </template>
 
 <script lang="ts">
-import {defineComponent, ref} from 'vue';
-import {IonButton} from '@ionic/vue';
-import {itemApi} from "@/lib/client";
-import {CreateItemDto, ItemAddPicturesPostRequest, ItemCreatePostRequest} from "@/lib/leftoverlove_client";
+import { defineComponent, ref } from 'vue';
+import { IonButton, IonDatetime, IonDatetimeButton, IonModal } from '@ionic/vue';
+import { itemApi } from "@/lib/client";
+import { CreateItemDto, ItemAddPicturesPostRequest, ItemCreatePostRequest } from "@/lib/leftoverlove_client";
 
 interface ImageFile {
   url: string;
   name: string;
 }
+
+const submitForm = () => {
+  console.log("Submit form");
+};
 
 const dataURLtoFile = (dataUrl: string, fileName: string): File => {
   const arr = dataUrl.split(',');
@@ -39,9 +73,8 @@ const dataURLtoFile = (dataUrl: string, fileName: string): File => {
 
 export default defineComponent({
   name: 'FilePickerComponent',
-  components: {
-    IonButton,
-  },
+  components: { IonButton, IonDatetime, IonDatetimeButton, IonModal },
+
   setup() {
     const fileInput = ref<HTMLInputElement | null>(null);
     const images = ref<ImageFile[]>([]);
@@ -50,8 +83,8 @@ export default defineComponent({
       fileInput.value?.click();
     };
 
-    const getRandomValueBetween = (min:number, max:number) => {
-      return Math.random() * (max-min)+min;
+    const getRandomValueBetween = (min: number, max: number) => {
+      return Math.random() * (max - min) + min;
     };
 
     const createItem = async (image: ImageFile) => {
@@ -67,7 +100,7 @@ export default defineComponent({
           expirationDate: new Date(),
           customerId: customerId,
         };
-        const itemRequest: ItemCreatePostRequest = {createItemDto: itemDto}
+        const itemRequest: ItemCreatePostRequest = { createItemDto: itemDto }
         const createdItem = await itemApi.itemCreatePost(itemRequest)
         const fileBlob = dataURLtoFile(image.url, image.name)
         const request: ItemAddPicturesPostRequest = {
@@ -89,7 +122,7 @@ export default defineComponent({
             const reader = new FileReader();
             reader.onload = e => {
               if (e.target?.result) {
-                images.value.push({url: e.target.result as string, name: file.name});
+                images.value.push({ url: e.target.result as string, name: file.name });
               }
             };
             reader.readAsDataURL(file);
@@ -110,17 +143,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.image-list {
-  margin-top: 20px;
-}
-
-.image-preview {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
 .image-preview img {
   max-width: 100%;
   height: auto;

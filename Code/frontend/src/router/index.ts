@@ -24,8 +24,8 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/views/Food.vue')
       },
       {
-        path: 'messages',
-        component: () => import('@/views/Messages.vue')
+        path: 'upload',
+        component: () => import('@/views/Upload.vue')
       },
       {
         path: 'user',
