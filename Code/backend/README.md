@@ -21,6 +21,13 @@
 - Hostname: `localhost`
 - Port `5000`
 
+## Build
+
+Create docker image
+``` shell
+docker build . -t leftoverlove-backend:latest --build-arg frontend_domain=<frontend url>
+```
+
 ### Create Migration
 
 ``` shell
