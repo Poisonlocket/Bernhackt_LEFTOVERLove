@@ -14,7 +14,9 @@ public static class CorsStartup
                         policy.AllowAnyMethod();
                         policy.WithOrigins(
                             "http://localhost:5000",
-                            "http://localhost:5173"
+                            "https://localhost:5001",
+                            "http://localhost:5173",
+                            "https://localhost:5173"
                         );
                     });
             });

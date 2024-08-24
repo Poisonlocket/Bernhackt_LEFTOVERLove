@@ -1,10 +1,6 @@
 using AutoMapper;
-using LeftOverLove.Common.Dtos;
-using LeftOverLove.Common.Entities;
 using LeftOverLove.DataAccess;
-using LeftOverLove.WebAPI.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace LeftOverLove.WebAPI.Controllers;
 
@@ -12,15 +8,12 @@ namespace LeftOverLove.WebAPI.Controllers;
 [Route("[controller]")]
 public class HaversineDistanceController : ControllerBase
 {
-    private readonly AppDbContext _dbContext;
     private readonly IMapper _mapper;
 
     public HaversineDistanceController(
-        AppDbContext dbContext,
         IMapper mapper
     )
     {
-        _dbContext = dbContext;
         _mapper = mapper;
     }
 

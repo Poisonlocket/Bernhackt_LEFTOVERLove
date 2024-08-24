@@ -1,6 +1,7 @@
 using AutoMapper;
 using LeftOverLove.Common.Dtos;
 using LeftOverLove.Common.Entities;
+using LeftOverLove.Common.Enums;
 using LeftOverLove.DataAccess;
 using LeftOverLove.WebAPI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -40,8 +41,8 @@ public class ItemController : ControllerBase
             Longitude = createDto.Longitude,
             Latitude = createDto.Latitude,
             ExpirationDate = createDto.ExpirationDate,
-            State = createDto.State,
-            CreationDate = createDto.CreationDate,
+            State = ItemState.Ready,
+            CreationDate = DateTime.UtcNow,
             CustomerId = createDto.CustomerId,
         };
         _dbContext.Items.Add(newItem);
@@ -56,24 +57,26 @@ public class ItemController : ControllerBase
         await this._itemService.AddPictures(pictures, itemId);
     }
 
-    [HttpGet("GetAll")]
+    [HttpGet("All")]
     public async Task<ActionResult<IEnumerable<ItemDto>>> GetAll()
     {
-        var items = await _dbContext.Items
+        IEnumerable<Item> items = await _dbContext.Items
                                     .Include(item => item.Customer)
                                     .ToListAsync();
-        return Ok(_mapper.Map<List<ItemDto>>(items));
+        return Ok(_mapper.Map<IEnumerable<ItemDto>>(items));
     }
 
 
-    [HttpGet("GetById/{id}")]
+    [HttpGet("ById/{id}")]
     public async Task<ActionResult<ItemDto>> GetById(int id)
     {
-        var customer = await _dbContext.Items.FindAsync(id);
-        
-        if (customer == null)
+        Item? item = await _dbContext.Items
+            .Include(i => i.Customer)
+            .FirstOrDefaultAsync(i => i.Id == id);
+
+        if (item == null)
             return NotFound();
-        customer.Customer = await _dbContext.Customers.FindAsync(customer.CustomerId);
-        return Ok(_mapper.Map<ItemDto>(customer));
+
+        return Ok(_mapper.Map<ItemDto>(item));
     }
 }

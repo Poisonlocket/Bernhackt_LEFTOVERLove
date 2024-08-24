@@ -21,15 +21,17 @@ public class ItemService
         if (item == null)
             throw new NotFoundException<Item>();
 
+        string basePath = Path.Combine(Environment.CurrentDirectory, "wwwroot", "Images");
         foreach (IFormFile image in images)
         {
-            string path = GetPicturePath(image, item);
+            string fileName = $"{item.Id}__{item.PicturePaths.Count}";
+            fileName = Path.ChangeExtension(fileName, GetFileExtension(image.ContentType));
 
-            Console.WriteLine(path);
+            string path = Path.Combine(basePath, fileName);
 
             await SavePicture(image, path);
 
-            item.PicturePaths.Add(path);
+            item.PicturePaths.Add(Path.Combine("/Images", fileName));
         }
 
         _dbContext.Items.Update(item);
@@ -47,20 +49,6 @@ public class ItemService
             Directory.CreateDirectory(basePath);
 
         await image.CopyToAsync(new FileStream(path, FileMode.Create));
-    }
-
-    private string GetPicturePath(IFormFile image, Item item)
-    {
-        string basePath = Path.Combine(Environment.CurrentDirectory, "wwwroot", "Images");
-        basePath = Path.Combine(basePath);
-
-        string fileName = $"{item.Id}__{item.PicturePaths.Count}";
-        fileName = Path.ChangeExtension(fileName, GetFileExtension(image.ContentType));
-
-        string path = Path.Combine(basePath, fileName);
-
-
-        return path;
     }
 
     private string GetFileExtension(string contentType)

@@ -13,6 +13,6 @@ public class Item
     public IList<string> PicturePaths { get; set; } = new List<string>();
     public ItemState State { get; set; }
     public DateTime CreationDate { get; set; }
-    public int CustomerId { get; set; } = -1;
-    public Customer? Customer { get; set; } = null;
+    public int CustomerId { get; set; }
+    public Customer? Customer { get; set; }
 }

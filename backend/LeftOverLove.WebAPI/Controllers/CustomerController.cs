@@ -46,11 +46,11 @@ public class CustomerController : ControllerBase
     /// <summary>Get all Customers</summary>
     /// <returns>List of Customers</returns>
     /// <response code="200">Successful</response>
-    [HttpGet("GetAll")]
+    [HttpGet("All")]
     public async Task<ActionResult<IEnumerable<CustomerDto>>> GetAll()
     {
-        var customers = await _dbContext.Customers.ToListAsync();
-        return Ok(_mapper.Map<List<CustomerDto>>(customers));
+        IEnumerable<Customer> customers = await _dbContext.Customers.ToListAsync();
+        return Ok(_mapper.Map<IEnumerable<CustomerDto>>(customers));
     }
 
     /// <summary>Get Customer by ID</summary>
@@ -58,16 +58,19 @@ public class CustomerController : ControllerBase
     /// <returns>Customer with specified ID</returns>
     /// <response code="200">Successful</response>
     /// <response code="404">Customer not found</response>
-    [HttpGet("GetById/{id}")]
+    [HttpGet("ById/{id}")]
     public async Task<ActionResult<CustomerDto>> GetById(int id)
     {
-        var customer = await _dbContext.Customers.FindAsync(id);
+        Customer? customer = await _dbContext.Customers.FindAsync(id);
         if (customer == null)
             return NotFound();
         return OkCustomer(customer);
     }
 
-    private ActionResult<CustomerDto> OkCustomer(Customer? customer) => Ok(_mapper.Map<CustomerDto>(customer));
+    private ActionResult<CustomerDto> OkCustomer(Customer? customer)
+    {
+        return Ok(_mapper.Map<CustomerDto>(customer));
+    }
 
     /// <summary>Update Customer Points</summary>
     /// <param name="id">Customer ID</param>
@@ -78,7 +81,7 @@ public class CustomerController : ControllerBase
     [HttpPut("UpdatePoints/{id}")]
     public async Task<ActionResult<CustomerDto>> UpdatePoints(int id, [FromBody] int points)
     {
-        var customer = await _dbContext.Customers.FindAsync(id);
+        Customer? customer = await _dbContext.Customers.FindAsync(id);
         if (customer == null)
             return NotFound();
 
@@ -98,7 +101,7 @@ public class CustomerController : ControllerBase
     [HttpPost("AddPoints/{id}")]
     public async Task<ActionResult<CustomerDto>> AddPoints(int id, [FromBody] int pointsToAdd)
     {
-        var customer = await _dbContext.Customers.FindAsync(id);
+        Customer? customer = await _dbContext.Customers.FindAsync(id);
         if (customer == null)
             return NotFound();
 
