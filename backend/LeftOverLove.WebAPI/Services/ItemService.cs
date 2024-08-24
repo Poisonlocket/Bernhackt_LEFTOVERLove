@@ -18,7 +18,10 @@ public class ItemService
     {
         IQueryable<Item> query = _dbContext.Items;
 
-        query = query.OrderBy(i => Math.Abs(i.Longitude - longitude) + Math.Abs(i.Latitude - latitude));
+        query = query.OrderBy(i =>
+        Math.Abs(i.Longitude - longitude) * Math.Abs(i.Longitude - longitude)
+        + Math.Abs(i.Latitude - latitude) * Math.Abs(i.Latitude - latitude)
+        );
 
         if (take != null)
             query = query.Take(take.Value);
