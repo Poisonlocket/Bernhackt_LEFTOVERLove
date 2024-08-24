@@ -23,6 +23,10 @@
               </ion-buttons>
             </ion-toolbar>
           </ion-header>
+          <ion-content v-if="!loadedData">
+            <!-- Todo -->
+            <ion-skeleton-text :animated="true" style="width: 80px"></ion-skeleton-text>
+          </ion-content>
           <ion-content v-if="loadedData">
             <ion-card>
               <img alt="" :src="loadedData.assetUrl" />
@@ -31,10 +35,15 @@
                 <ion-card-subtitle>{{ loadedData.dateCreated }}</ion-card-subtitle>
               </ion-card-header>
               <ion-card-content class="h-full">
-                <span>{{ loadedData.id }}</span>
+                <!-- <span>{{ loadedData.id }}</span> -->
                 <div>{{ loadedData.description }}</div>
                 <div class="mt-4">
-                  <ion-button class="w-full" color="primary">Interesse anmelden</ion-button>
+                  <ion-button class="w-full" color="primary">
+                    <div class="flex gap-1">
+                      <span>Take it!</span>
+                      <ion-icon :icon="chevronForwardOutline"></ion-icon>
+                    </div>
+                  </ion-button>
                 </div>
               </ion-card-content>
               
@@ -49,7 +58,9 @@
 
 <script setup lang="ts">
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonModal, IonLoading } from '@ionic/vue';
+import { chevronForwardOutline } from 'ionicons/icons';
 import { defineComponent, defineEmits, ref } from 'vue';
+import { itemApi } from '@/lib/client'; 
 import Map from '@/components/Map.vue';
 import { Capacitor } from '@capacitor/core';
 
@@ -64,17 +75,11 @@ const dismiss = () => { modal.value.$el.dismiss() }
 
 const loadItem = async (itemId: null) => {
   try {
-    // handle api calls here - const response = await axios.get(`https://api.example.com/items/${itemId}`);
-    const response = {
-      data: {
-        id: itemId,
-        assetUrl: 'https://ionicframework.com/docs/img/demos/card-media.png',
-        dateCreated: "2021-09-01T12:00:00Z",
-        title: "an apple?",
-        description: "this is demo data for an apple. apples are green. they are healthy and tasty.",
-      }
-    };
-    return response.data;
+    if (!itemId) {
+      return null;
+    }
+    
+    return await itemApi.itemByIdIdGet(itemId);
   } catch (error) {
     console.error("Error loading item:", error);
     return null;
