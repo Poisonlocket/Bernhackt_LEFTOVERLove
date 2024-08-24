@@ -14,6 +14,18 @@ public class ItemService
         _dbContext = dbContext;
     }
 
+    public async Task<IEnumerable<Item>> GetRange(int skip, int? take, double longitude, double latitude)
+    {
+        IQueryable<Item> query = _dbContext.Items;
+
+        query = query.OrderBy(i => Math.Abs(i.Longitude - longitude) + Math.Abs(i.Latitude - latitude));
+
+        if (take != null)
+            query = query.Take(take.Value);
+
+        return await query.Skip(skip).ToListAsync();
+    }
+
     public async Task AddPictures(IFormFileCollection images, int itemId)
     {
         Item? item = await _dbContext.Items.FirstOrDefaultAsync(i => i.Id == itemId);

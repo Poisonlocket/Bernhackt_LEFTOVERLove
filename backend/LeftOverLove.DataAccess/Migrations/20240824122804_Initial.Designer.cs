@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace LeftOverLove.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240823204947_Initial")]
+    [Migration("20240824122804_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -25,6 +25,38 @@ namespace LeftOverLove.DataAccess.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("LeftOverLove.Common.Dtos.Customer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Latitude")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Longitude")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("Points")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Customers");
+                });
+
             modelBuilder.Entity("LeftOverLove.Common.Entities.Item", b =>
                 {
                     b.Property<int>("Id")
@@ -36,6 +68,9 @@ namespace LeftOverLove.DataAccess.Migrations
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("text");
@@ -43,13 +78,11 @@ namespace LeftOverLove.DataAccess.Migrations
                     b.Property<DateTime>("ExpirationDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("Latitude")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<double>("Latitude")
+                        .HasColumnType("double precision");
 
-                    b.Property<string>("Longitude")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<double>("Longitude")
+                        .HasColumnType("double precision");
 
                     b.Property<string[]>("PicturePaths")
                         .IsRequired()
@@ -60,7 +93,20 @@ namespace LeftOverLove.DataAccess.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CustomerId");
+
                     b.ToTable("Items");
+                });
+
+            modelBuilder.Entity("LeftOverLove.Common.Entities.Item", b =>
+                {
+                    b.HasOne("LeftOverLove.Common.Dtos.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
                 });
 #pragma warning restore 612, 618
         }
