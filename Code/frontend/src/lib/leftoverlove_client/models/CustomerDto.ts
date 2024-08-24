@@ -39,16 +39,16 @@ export interface CustomerDto {
     lastName?: string | null;
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof CustomerDto
      */
-    longitude?: string | null;
+    longitude?: number;
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof CustomerDto
      */
-    latitude?: string | null;
+    latitude?: number;
     /**
      * 
      * @type {number}

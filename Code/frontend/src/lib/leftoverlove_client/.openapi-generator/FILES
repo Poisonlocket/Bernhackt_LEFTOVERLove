@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 apis/CustomerApi.ts
 apis/HaversineDistanceApi.ts
 apis/ItemApi.ts

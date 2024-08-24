@@ -40,16 +40,16 @@ export interface ItemDto {
     description?: string | null;
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof ItemDto
      */
-    longitude?: string | null;
+    longitude?: number;
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof ItemDto
      */
-    latitude?: string | null;
+    latitude?: number;
     /**
      * 
      * @type {Date}

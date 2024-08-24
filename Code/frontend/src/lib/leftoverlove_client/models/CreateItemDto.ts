@@ -27,16 +27,16 @@ export interface CreateItemDto {
     description?: string | null;
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof CreateItemDto
      */
-    longitude?: string | null;
+    longitude?: number;
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof CreateItemDto
      */
-    latitude?: string | null;
+    latitude?: number;
     /**
      * 
      * @type {Date}

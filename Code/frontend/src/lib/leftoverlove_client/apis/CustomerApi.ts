@@ -17,13 +17,13 @@ import * as runtime from '../runtime';
 import type {
   CreateCustomerDto,
   CustomerDto,
-} from '../models';
+} from '../models/index';
 import {
     CreateCustomerDtoFromJSON,
     CreateCustomerDtoToJSON,
     CustomerDtoFromJSON,
     CustomerDtoToJSON,
-} from '../models';
+} from '../models/index';
 
 export interface CustomerAddPointsIdPostRequest {
     id: number;

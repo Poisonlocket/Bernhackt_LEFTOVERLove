@@ -369,6 +369,72 @@
         }
       }
     },
+    "/Item/CreateBulk": {
+      "post": {
+        "tags": [
+          "Item"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CreateItemDto"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CreateItemDto"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CreateItemDto"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ItemDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ItemDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ItemDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/Item/AddPictures": {
       "post": {
         "tags": [
@@ -418,6 +484,78 @@
       "get": {
         "tags": [
           "Item"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ItemDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ItemDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ItemDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Item/Range": {
+      "get": {
+        "tags": [
+          "Item"
+        ],
+        "parameters": [
+          {
+            "name": "skip",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "longitude",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "latitude",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -507,12 +645,12 @@
             "nullable": true
           },
           "longitude": {
-            "type": "string",
-            "nullable": true
+            "type": "number",
+            "format": "double"
           },
           "latitude": {
-            "type": "string",
-            "nullable": true
+            "type": "number",
+            "format": "double"
           },
           "points": {
             "type": "integer",
@@ -529,12 +667,12 @@
             "nullable": true
           },
           "longitude": {
-            "type": "string",
-            "nullable": true
+            "type": "number",
+            "format": "double"
           },
           "latitude": {
-            "type": "string",
-            "nullable": true
+            "type": "number",
+            "format": "double"
           },
           "expirationDate": {
             "type": "string",
@@ -563,12 +701,12 @@
             "nullable": true
           },
           "longitude": {
-            "type": "string",
-            "nullable": true
+            "type": "number",
+            "format": "double"
           },
           "latitude": {
-            "type": "string",
-            "nullable": true
+            "type": "number",
+            "format": "double"
           },
           "points": {
             "type": "integer",
@@ -589,12 +727,12 @@
             "nullable": true
           },
           "longitude": {
-            "type": "string",
-            "nullable": true
+            "type": "number",
+            "format": "double"
           },
           "latitude": {
-            "type": "string",
-            "nullable": true
+            "type": "number",
+            "format": "double"
           },
           "expirationDate": {
             "type": "string",

@@ -33,16 +33,16 @@ export interface CreateCustomerDto {
     lastName?: string | null;
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof CreateCustomerDto
      */
-    longitude?: string | null;
+    longitude?: number;
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof CreateCustomerDto
      */
-    latitude?: string | null;
+    latitude?: number;
     /**
      * 
      * @type {number}
