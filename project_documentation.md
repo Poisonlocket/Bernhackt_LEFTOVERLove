@@ -46,8 +46,9 @@ sind.
 - ASPNet Core
 - Entity Framework
 - Automapper
-- VueJS
-- FastAPI
+- VueJS with Ionic
+
+<img src="project_images/Architecture.png" alt="Architecture">
 
 ### Aufgabe pro Tool
 
@@ -55,7 +56,6 @@ sind.
 * Entity Framework: DB Models
 * Automapper: Mapping Models to DTOs
 * VueJS: Frontend
-* FastAPI: API endpoints
 * ???: Hosting TODO DESCRIBE HOSTING
 
 ## Implementation
