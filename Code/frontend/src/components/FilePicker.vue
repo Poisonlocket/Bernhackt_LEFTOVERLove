@@ -9,6 +9,7 @@
         <ion-button @click="createItem(image)">Sponsor your Food</ion-button>
       </div>
     </div>
+    <div v-if="uploadSuccess" class="heart-animation">❤️</div>
   </div>
 </template>
 
@@ -34,7 +35,7 @@ const dataURLtoFile = (dataUrl: string, fileName: string): File => {
     u8arr[n] = bstr.charCodeAt(n);
   }
 
-  return new File([u8arr], fileName, { type: mime });
+  return new File([u8arr], fileName, {type: mime});
 };
 
 export default defineComponent({
@@ -45,13 +46,14 @@ export default defineComponent({
   setup() {
     const fileInput = ref<HTMLInputElement | null>(null);
     const images = ref<ImageFile[]>([]);
+    const uploadSuccess = ref(false);
 
     const openFilePicker = () => {
       fileInput.value?.click();
     };
 
-    const getRandomValueBetween = (min:number, max:number) => {
-      return Math.random() * (max-min)+min;
+    const getRandomValueBetween = (min: number, max: number) => {
+      return Math.random() * (max - min) + min;
     };
 
     const createItem = async (image: ImageFile) => {
@@ -75,6 +77,11 @@ export default defineComponent({
           pictures: [fileBlob],
         }
         await itemApi.itemAddPicturesPost(request)
+        uploadSuccess.value = true;
+        setTimeout(() => {
+          uploadSuccess.value = false;
+          window.location.reload();
+        }, 2000);
       } catch (e) {
         console.log(e)
       }
@@ -101,6 +108,7 @@ export default defineComponent({
     return {
       fileInput,
       images,
+      uploadSuccess,
       openFilePicker,
       onFileChange,
       createItem
@@ -110,6 +118,26 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.heart-animation {
+  font-size: 4em;
+  color: red;
+  animation: pulse 1s infinite;
+  text-align: center;
+  margin-top: 0;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+  }
+  70% {
+    transform: scale(2.0);
+  }
+  100% {
+    transform: scale(0.95);
+  }
+}
+
 .image-list {
   margin-top: 20px;
 }
