@@ -10,14 +10,14 @@ export default {
             required: true
         }
     },
-    setup(props) {
+    setup(props, { emit }) {
         const mapRef = ref(null);
-        let newMap = null;
+        let googleMap = null;
 
         async function createMap() {
             if (!mapRef.value) return;
             try {
-                newMap = await GoogleMap.create({
+                googleMap = await GoogleMap.create({
                     id: "simple-map",
                     element: mapRef.value,
                     apiKey: 'AIzaSyCeaKi3CsInCMMfJXzm72401yG9EwfSldQ',
@@ -26,7 +26,7 @@ export default {
                             lat: 46.942596781024726,
                             lng: 7.440866134927716,
                         },
-                        zoom: 12,
+                        zoom: 13,
                         disableDefaultUI: true,
                         styles: [
                             { elementType: 'geometry', stylers: [{ color: '#212121' }] },
@@ -55,22 +55,25 @@ export default {
                 });
 
                 addMarkers(props.markerData);
+
+                googleMap.setOnMarkerClickListener((event) => {
+                    emit("onMarkerClicked", event);
+                });
             } catch (error) {
                 console.error('Error creating map:', error);
             }
         }
 
         async function addMarkers(markerData) {
-            if (!newMap) return;
+            if (!googleMap) return;
 
-            await newMap.addMarkers(markerData.map(marker => ({
+            await googleMap.addMarkers(markerData.map(marker => ({
                 coordinate: {
                     lat: marker.coordinate.lat,
                     lng: marker.coordinate.lng,
                 },
                 title: marker.title,
                 snippet: marker.snippet,
-                draggable: false,
                 iconUrl: '/marker.svg'
             })));
         }
@@ -92,7 +95,5 @@ export default {
 </script>
 
 <template>
-    <div>
-        <capacitor-google-map ref="mapRef" style="display: inline-block; width: 100vw; height: 80vh"></capacitor-google-map>
-    </div>
+    <capacitor-google-map class="inline-block w-screen h-[80vh]" ref="mapRef" style="width: 100vw;"></capacitor-google-map>
 </template>

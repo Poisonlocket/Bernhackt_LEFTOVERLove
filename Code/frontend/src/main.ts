@@ -37,6 +37,8 @@ import './theme/variables.css';
 /* Tailwind CSS */
 import './theme/tailwind.css';
 
+import './theme/helpers.css';
+
 const app = createApp(App)
   .use(IonicVue)
   .use(router);
