@@ -1,0 +1,7 @@
+{
+  "name": "leftoverlove_frontend",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue-vite"
+}
