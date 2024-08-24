@@ -3,9 +3,9 @@
 ################################################################################
 */.idea/*
 /.vs
-/backend/.vs
 
 # DS Store
 .DS_Store
 
 Code/frontend/node_modules
+/Code/backend/.vs
