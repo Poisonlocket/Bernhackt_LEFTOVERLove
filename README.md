@@ -2,7 +2,7 @@
 
 ## Documentation
 
-[BärnHäckt - Project Project Documentation](./project_documentation.md)
+[BärnHäckt - Project Documentation](./Documentation/project_documentation.md)
 
 ## Prerequisites
 
