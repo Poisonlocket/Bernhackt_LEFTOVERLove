@@ -20,16 +20,17 @@
             <ion-label>Ablaufdatum</ion-label>
             <ion-datetime-button datetime="datetime"></ion-datetime-button>
             <ion-modal :keep-contents-mounted="true">
-              <ion-datetime id="datetime" presentation="date" value="2023-11-02T01:22:00"
-                :format-options="formatOptions"></ion-datetime>
+              <ion-datetime id="datetime" presentation="date" value="2024-08-24T22:30:00"></ion-datetime>
             </ion-modal>
           </ion-item>
         </ion-list>
         
         <ion-button class="w-full mt-8" @click="openFilePicker">Upload image</ion-button>
-        <ion-button class="w-full mt-8" @click="submitForm()">Submit data</ion-button>
+        <ion-button class="w-full mt-8">Submit data</ion-button>
         <input type="file" ref="fileInput" @change="onFileChange" style="display:none" multiple accept="image/*" />
       </ion-content>
+
+      <div v-if="uploadSuccess" class="heart-animation">❤️</div>
 
       <div v-if="images.length" class="mt-8">
         <div v-for="(image, index) in images" :key="index" class="flex flex-col items-center mb-4">
@@ -38,15 +39,13 @@
         </div>
       </div>
 
-      <div v-if="uploadSuccess" class="heart-animation">❤️</div>
-
     </ion-content>
   </ion-page>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import { IonButton, IonDatetime, IonDatetimeButton, IonModal } from '@ionic/vue';
+import { IonPage, IonButton, IonDatetime, IonDatetimeButton, IonModal } from '@ionic/vue';
 import { itemApi } from "@/lib/client";
 import { CreateItemDto, ItemAddPicturesPostRequest, ItemCreatePostRequest } from "@/lib/leftoverlove_client";
 
