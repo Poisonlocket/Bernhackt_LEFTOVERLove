@@ -4,3 +4,8 @@
 
 /.vs
 /backend/.vs
+
+# DS Store
+.DS_Store
+
+frontend/node_modules
