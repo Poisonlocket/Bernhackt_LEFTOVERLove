@@ -1,0 +1,13 @@
+.openapi-generator-ignore
+apis/CustomerApi.ts
+apis/HaversineDistanceApi.ts
+apis/ItemApi.ts
+apis/index.ts
+index.ts
+models/CreateCustomerDto.ts
+models/CreateItemDto.ts
+models/CustomerDto.ts
+models/ItemDto.ts
+models/ItemState.ts
+models/index.ts
+runtime.ts
