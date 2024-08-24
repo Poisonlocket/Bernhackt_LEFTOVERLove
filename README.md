@@ -19,8 +19,8 @@
 
 ## Development
 
-- Backend Code is in `./backend` folder
-- Frontend Code is in `./frontend` folder
+- Backend Code is in `./Code/backend` folder
+- Frontend Code is in `./Code/frontend` folder
 
 # Demo
 [TODO ADD LINK TO DEMO] -> GENERATE QRCODE FOR DEMO / HOSTING
@@ -33,7 +33,7 @@
 With Docker (zsh):
 
 ```sh
-cd frontend
+cd ./Code/frontend
 ```
 
 ```sh
