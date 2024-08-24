@@ -2,8 +2,29 @@
 http://ionicframework.com/docs/theming/ */
 
 :root {
-    --ion-background-color: #252323;
 
-    --ion-color-primary: #DAD2BC;
-    --ion-color-secondary: #70798C;
+    --ion-color-primary: #BEEDAA;
+    --ion-color-secondary: #71816D;
+    --ion-color-base: #292c3c;
+    --ion-background-color: #292c3c;
+    --ion-card-background: ;
 }
+
+body{
+    --ion-color-secondary: #71816D;
+    --ion-color-base: #71816D;
+    --ion-background-color: #253728;
+}
+
+ion-card{
+    --ion-background-color: #D6D9CE;
+    --ion-card-background: #151515;
+}
+
+ion-chip{
+    --ion-background-color: #BEEDAA;
+    --ion-card-background: #BEEDAA;
+    --ion-color-base: #BEEDAA;
+    --ion-color-primary: #BEEDAA;
+}
+
