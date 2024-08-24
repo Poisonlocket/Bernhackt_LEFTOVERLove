@@ -35,6 +35,7 @@ public class CustomerController : ControllerBase
             LastName = createDto.LastName,
             Longitude = createDto.Longitude,
             Latitude = createDto.Latitude,
+            Points = createDto.Points,
         };
         _dbContext.Customers.Add(newCustomer);
         await _dbContext.SaveChangesAsync();
@@ -63,6 +64,48 @@ public class CustomerController : ControllerBase
         var customer = await _dbContext.Customers.FindAsync(id);
         if (customer == null)
             return NotFound();
-        return Ok(_mapper.Map<CustomerDto>(customer));
+        return OkCustomer(customer);
+    }
+
+    private ActionResult<CustomerDto> OkCustomer(Customer? customer) => Ok(_mapper.Map<CustomerDto>(customer));
+
+    /// <summary>Update Customer Points</summary>
+    /// <param name="id">Customer ID</param>
+    /// <param name="points">New points value</param>
+    /// <returns>Updated Customer</returns>
+    /// <response code="200">Successful</response>
+    /// <response code="404">Customer not found</response>
+    [HttpPut("UpdatePoints/{id}")]
+    public async Task<ActionResult<CustomerDto>> UpdatePoints(int id, [FromBody] int points)
+    {
+        var customer = await _dbContext.Customers.FindAsync(id);
+        if (customer == null)
+            return NotFound();
+
+        customer.Points = points;
+        _dbContext.Customers.Update(customer);
+        await _dbContext.SaveChangesAsync();
+
+        return OkCustomer(customer);
+    }
+
+    /// <summary>Add Points to Customer</summary>
+    /// <param name="id">Customer ID</param>
+    /// <param name="pointsToAdd">Points to add</param>
+    /// <returns>Updated Customer</returns>
+    /// <response code="200">Successful</response>
+    /// <response code="404">Customer not found</response>
+    [HttpPost("AddPoints/{id}")]
+    public async Task<ActionResult<CustomerDto>> AddPoints(int id, [FromBody] int pointsToAdd)
+    {
+        var customer = await _dbContext.Customers.FindAsync(id);
+        if (customer == null)
+            return NotFound();
+
+        customer.Points += pointsToAdd;
+        _dbContext.Customers.Update(customer);
+        await _dbContext.SaveChangesAsync();
+
+        return OkCustomer(customer);
     }
 }

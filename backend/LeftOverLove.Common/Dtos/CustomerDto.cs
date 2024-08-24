@@ -7,4 +7,5 @@ public class CustomerDto
     public string LastName { get; set; } = null!;
     public string Longitude { get; set; } = null!;
     public string Latitude { get; set; } = null!;
+    public int Points { get; set; } = -1;
 }
