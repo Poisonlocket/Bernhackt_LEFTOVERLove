@@ -69,11 +69,8 @@ run database migration  # nur das erste Mal
 
 ## Benutzung
 
-TODO LINKS
-
-Gehe auf XXX. Du siehst die Ansicht des Anbieters für Lebensmittel, die gerettet werden können. Mach ein Foto und trage
-das Haltbarkeitsdatum ein. Als Retter/in, gehe auf XXX. Dort siehst du die Lebensmittel, die zum Retter in deiner
-Umgebung bereitstehen. Wähle eines aus.
+TODO LINK ZM SCREENCAST
+Du siehst die Ansicht des Anbieters für Lebensmittel, die gerettet werden können. Mach ein Foto und trage das Haltbarkeitsdatum ein. Als Retter/in, gehe auf XXX. Dort siehst du die Lebensmittel, die zum Retter in deiner Umgebung bereitstehen. Wähle eines aus.
 
 ### Funktionen
 
