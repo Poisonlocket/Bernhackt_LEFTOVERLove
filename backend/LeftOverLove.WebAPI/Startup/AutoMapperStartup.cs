@@ -10,6 +10,7 @@ public static class AutoMapperStartup
         MapperConfiguration mapperConfig = new(mc =>
         {
             mc.AddProfile(new ItemMappingProfile());
+            mc.AddProfile(new CustomerMappingProfile());
         });
 
         IMapper? mapper = mapperConfig.CreateMapper();

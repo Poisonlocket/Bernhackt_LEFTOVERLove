@@ -10,4 +10,6 @@ public class CreateItemDto
     public DateTime ExpirationDate { get; set; }
     public ItemState State { get; set; }
     public DateTime CreationDate { get; set; }
+    public int CustomerId { get; set; } = -1;
+    public Customer? Customer { get; set; } = null;
 }

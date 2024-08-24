@@ -1,4 +1,5 @@
 using EntityFramework.Exceptions.PostgreSQL;
+using LeftOverLove.Common.Dtos;
 using LeftOverLove.Common.Entities;
 using LeftOverLove.Common.Settings;
 using LeftOverLove.DataAccess.Configuration;
@@ -17,6 +18,7 @@ public class AppDbContext : DbContext
     }
 
     public DbSet<Item> Items { get; private set; } = null!;
+    public DbSet<Customer> Customers { get; private set; } = null!;
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -28,5 +30,6 @@ public class AppDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new ItemConfiguration());
+        modelBuilder.ApplyConfiguration(new CustomerConfiguration());
     }
 }

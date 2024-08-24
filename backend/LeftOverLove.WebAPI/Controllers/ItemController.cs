@@ -4,6 +4,7 @@ using LeftOverLove.Common.Entities;
 using LeftOverLove.DataAccess;
 using LeftOverLove.WebAPI.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace LeftOverLove.WebAPI.Controllers;
 
@@ -41,6 +42,7 @@ public class ItemController : ControllerBase
             ExpirationDate = createDto.ExpirationDate,
             State = createDto.State,
             CreationDate = createDto.CreationDate,
+            CustomerId = createDto.CustomerId,
         };
         _dbContext.Items.Add(newItem);
         await _dbContext.SaveChangesAsync();
@@ -52,5 +54,26 @@ public class ItemController : ControllerBase
     public async Task AddPictures(IFormFileCollection pictures, [FromQuery] int itemId)
     {
         await this._itemService.AddPictures(pictures, itemId);
+    }
+
+    [HttpGet("GetAll")]
+    public async Task<ActionResult<IEnumerable<ItemDto>>> GetAll()
+    {
+        var items = await _dbContext.Items
+                                    .Include(item => item.Customer)
+                                    .ToListAsync();
+        return Ok(_mapper.Map<List<ItemDto>>(items));
+    }
+
+
+    [HttpGet("GetById/{id}")]
+    public async Task<ActionResult<ItemDto>> GetById(int id)
+    {
+        var customer = await _dbContext.Items.FindAsync(id);
+        
+        if (customer == null)
+            return NotFound();
+        customer.Customer = await _dbContext.Customers.FindAsync(customer.CustomerId);
+        return Ok(_mapper.Map<ItemDto>(customer));
     }
 }
