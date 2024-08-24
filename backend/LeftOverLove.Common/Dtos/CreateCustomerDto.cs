@@ -3,7 +3,7 @@ public class CreateCustomerDto
 {
     public string FirstName { get; set; } = null!;
     public string LastName { get; set; } = null!;
-    public double Longitude { get; set; }
-    public double Latitude { get; set; }
+    public string Longitude { get; set; } = null!;
+    public string Latitude { get; set; } = null!;
     public int Points { get; set; }
 }
