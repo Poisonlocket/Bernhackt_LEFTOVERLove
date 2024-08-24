@@ -1,4 +1,4 @@
-# Bernhackt_LEFTOVERLove
+# Team LEFTOVERLove | Challenge Lebensmittel weitergeben statt wegwerfen (Transgourmet)
 
 ## Documentation
 
