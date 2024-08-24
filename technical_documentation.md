@@ -91,6 +91,17 @@ TODO: ADD LINK TO SWAGGER
 XXX
 
 ### Lokal
+OpenAPI Client generieren (Docker und ZSH)
+
+``` bash
+cd frontend
+docker run --rm \
+  -v ${PWD}:/local openapitools/openapi-generator-cli generate \
+  -i /local/openapi.yml \
+  -g typescript-fetch \
+  -o /local/src/lib/leftoverlove_client
+
+```
 
 - Hostname: `localhost`
 - Port `5000`
