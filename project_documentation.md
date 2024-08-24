@@ -86,7 +86,6 @@ TODO: Fotos von unserem Progress (wichtig: immer mehr leere Flaschen auf dem Tis
 - Christian Huber (TC)
 - Matthias Oberholzer
 - Lorenzo Bonometti
-- Timeo Liechti
 - Florence Meier
 
 ___

@@ -47,9 +47,8 @@ LocalDevelopment - `https://localhost:5000` TODO check port number
 
 ## Authors
 
-- Yasin Gündüz
-- Christian Huber
-- Matthias Oberholzer
-- Lorenzo Bonometti
-- Timeo Liechti
+- [Yasin Gündüz](https://github.com/yguenduez "github repo link")
+- [Christian Huber](https://github.com/jarheadcore "github repo link")
+- [Matthias Oberholzer](https://github.com/githubUser3454321 "github repo link")
+- [Lorenzo Bonometti](https://github.com/Poisonlocket "github repo link")
 - [Florence Meier](https://github.com/Tamalera "github repo link")
