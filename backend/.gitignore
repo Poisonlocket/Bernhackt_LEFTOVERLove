@@ -1,0 +1,6 @@
+obj/
+bin/
+
+LeftOverLove.WebAPI/wwwroot/Images/*.jpg
+LeftOverLove.WebAPI/wwwroot/Images/*.png
+LeftOverLove.WebAPI/wwwroot/Images/*.gif

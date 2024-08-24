@@ -1,0 +1,49 @@
+version: "3.9"
+name: leftoverlove
+
+services:
+  leftoverlove_backend:
+    image: mcr.microsoft.com/dotnet/sdk:8.0
+    container_name: leftoverlove_backend
+    entrypoint: bash -c "dotnet dev-certs https && dotnet watch run --project LeftOverLove.WebAPI"
+    working_dir: /app
+    volumes:
+      - ./:/app
+      # Ignore these folders
+      - /app/LeftOverLove.Common/bin
+      - /app/LeftOverLove.Common/obj
+      - /app/LeftOverLove.DataAccess/bin
+      - /app/LeftOverLove.DataAccess/obj
+      - /app/LeftOverLove.WebAPI/bin
+      - /app/LeftOverLove.WebAPI/obj
+    environment:
+      DOTNET_WATCH_RESTART_ON_RUDE_EDIT: 1
+    ports:
+      - "5000:5000"
+    depends_on:
+      - leftoverlove_db
+    networks:
+      - db
+
+  leftoverlove_db:
+    image: postgres:16.2-alpine3.19
+    container_name: leftoverlove_db
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DATABASE=leftoverlove
+    ports:
+      - "2308:2308"
+    volumes:
+      - db:/var/lib/postgresql/data
+    command: -p 2308
+    networks:
+      db:
+        aliases:
+          - leftoverlove.db
+
+volumes:
+  db:
+
+networks:
+  db:
