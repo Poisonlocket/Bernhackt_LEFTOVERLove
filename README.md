@@ -1,4 +1,5 @@
 # Bernhackt_LEFTOVERLove
+
 FoodWaste.reduce(); <br>
 FoodWaste.eliminate(); <br>
 exit 0
@@ -12,6 +13,7 @@ exit 0
 ---
 
 # Demo
+
 [Link zum Projekt](https://gvb-10534.azurewebsites.net/ "project link") TODO: CHANGE LINK
 
 ---
@@ -29,8 +31,12 @@ Use dotnet version 6.0.400 TODO: NOTE DOWN VERSION
 
 ### How to start
 
-TODO describe startup on local
-
+Frontend
+```
+cd <..._frontend>
+npm install
+ionic serve
+```
 ### Existing Environments
 
 LocalDevelopment - `https://localhost:5000` TODO check port number
@@ -38,11 +44,12 @@ LocalDevelopment - `https://localhost:5000` TODO check port number
 ## CI / Pipelines
 
 ---
-## Authors
-TODO fill names
 
-- [Nino Müller](https://github.com/ninomllr)
-- [Nico Berchtold](https://github.com/ntold)
-- [Michal Durik](https://github.com/miko866)
-- [Florence Meier](https://github.com/Tamalera)
-- [Olivier Messerli](https://github.com/olimoli)
+## Authors
+
+- Yasin Gündüz
+- Christian Huber
+- Matthias Oberholzer
+- Lorenzo Bonometti
+- Timeo Liechti
+- [Florence Meier](https://github.com/Tamalera "github repo link")
