@@ -8,12 +8,14 @@
 
 - PNPM installed: `npm install -g pnpm` or `brew install pnpm`
 - [PNPM Installation](https://pnpm.io/installation)
+- Ionic installed globally: `npm install -g @ionic/cli@latest native-run`
 
-## How to start
+## How to start frontend
 
 1. Clone the repository with `git clone [url]`
-2. Run dependencies with `pnpm install`
-3. Start ionic project with `ionic serve`
+2. Go to frontend folder `cd frontend`
+3. Run dependencies with `pnpm install`
+4. Start ionic project with `ionic serve`
 
 ## Development
 
