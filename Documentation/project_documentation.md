@@ -12,14 +12,13 @@ Foodwaste, zu deutsch Lebensmittelverschwendung ist ein Problem, das uns alle be
 
 ## Zusammenfassung
 
-Am diesjährigen BärnHäckt arbeitet Team **LEFTOVERLove** an der Challenge von Transgourmet ([Challenge](https://www.bernhackt.ch/challenges/2024-stopfoodwaste "challenge description")), um **Transgourmet** beim Bekämpfen von Foodwaste zu helfen. Dies hilf, Lebensmittelverschwendung und die resultierenden Kosten, sowie den negativen Impakt auf die Umwelt, zu verhindern. Wir entwickelten eine Applikation, wo man mit einem klick seine zu rettenden Lebensmittel hochladen kann. Ein/e Retter/in kann mit einem Klick weiderum die Lebensmittel abholen. Die Lösung reiht sich nahtlos an bestehende Anti-Foodwaste Initiativen an, ohne diese zu kanibalisieren. Dabei vereint unsere Lösung ein unkompliziertes und dezetralisiertes Verteilen von Essen, das sonst weggeworfen würde, und bietet sowohl Menschen, die punktuell zu viel Essen zu Hause haben, und Menschen, die Essen retten wollen einen Mehrwert.
-### Problembeschrieb TODO ÜBERARBETIEN BITTE
+Am diesjährigen BärnHäckt arbeitet Team **LEFTOVERLove** an der Challenge von Transgourmet ([Challenge](https://www.bernhackt.ch/challenges/2024-stopfoodwaste "challenge  dscription")), um **Transgourmet** beim Bekämpfen von Foodwaste zu helfen. Dies hilf, Lebensmittelverschwendung und die resultierenden Kosten, sowie den negativen Impakt auf die Umwelt, zu verhindern. Wir entwickelten eine Applikation, wo man mit einem klick seine zu rettenden Lebensmittel hochladen kann. Ein/e Retter/in kann mit einem Klick weiderum die Lebensmittel abholen. Die Lösung reiht sich nahtlos an bestehende Anti-Foodwaste Initiativen an, ohne diese zu kanibalisieren. Dabei vereint unsere Lösung ein unkompliziertes und dezetralisiertes Verteilen von Essen, das sonst weggeworfen würde, und bietet sowohl Menschen, die punktuell zu viel Essen zu Hause haben, und Menschen, die Essen retten wollen einen Mehrwert.
 
-* Marie geht in die Ferien. Sie hat aber noch Früchte zu Hause, die sie nich verwerten kann und wegschmeissen müsste 
-* Fridolin hatte eine Geburtstagsparty organisiert, sich aber beim EInkauf überschätzt und kann nicht alle Lebensmittel selbst Essen. Seinen Nachbar mag er nicht, möchte trotzdem nicht, dass das Essen weggeschmissen wird
-* Achmed kommt nach einer Blinddarmentzündung vom SPital nah Hause. Er muss sich an die Ernährungsvorgaben seines Artzes halten, möchte aber das Essen bei ihm nicht in den Müll werfen
-* Lydia ist vielbeschäftigt und verpasst oft die Öffnungszeiten der Supermarktes. Sie ist Umweltbewusst, und schätzt es,   Essen zu retten, ohne an eine Zeit gebunden zu sein
+### Problembeschrieb
+
+* Marie geht in die Ferien. Sie hat aber noch Früchte zu Hause, die sie nicht verwerten kann und wegschmissen müssten.
 * Oleg ist Student und hat ein schmales Budget. Er freut sich über die Chance Essen zu retten und dabei seinen Geldbeutel zu schonen.
+* Marie und Oleg kennen sich nicht, könnten sich aber gegenseitig helfen, Essen vor dem Mülleimer zu Retten und dabei das Budget zu schonen.
 
 ### Fokus
 
@@ -50,19 +49,19 @@ MVP fokussiert sich auf EINFACHHEIT für die Menschen, die Essen "voorig" haben,
 
 ## Implementation
 
-TODO: LINK ZUM SCREENCAST
+Web-basierter PoC. Wir verwenden das Ionic Framework, womit man ein Moblieapp plattformunabhängig entwickeln kann. Die App ist einfach und selbsterklärend gestaltet, um die Einstiegshürde für alle Benutzer/innen so tief wie möglich zu halten. Als Anbieter von Lebensmitteln kann man mit einem Foto die Lebensmittel anbieten. Die Geolocation wird automatisch daraus extrahiert. Als Retter/in der Lebensmittel kann man per Map oder Liste die Lebensmittel am nächsten zum jetzigen Standort finden und reservieren. Anbieter/in und Retter/in kann eine oder beide Rollen einnehmen, ohne die App zu wechseln oder neu anzumelden. Keep it simple!
 
 ### Out of Scope
 
-* Grading/Gamification der BenutzerInnen
-* Chat für die Anbieter und Retter
-* Wiki und Tutorial zum Thema Foodwaste und Applikation
+* Grading/Gamification der Benutzer/innen
+* Chat für die Anbieter und Retter/innen
+* Wiki zum Thema Foodwaste und Tutorial zur Applikation
 
 ### Zukunftsplan
 
-* Gamification
 * Machine-Vision zum Erkennen der Produkte auf dem Foto
 * Klimaschutzrelevante Daten anzeigen: zB gespartes CO<sub>2
+* Gamification-Ideen
 
 ## Mitwirkende
 

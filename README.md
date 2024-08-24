@@ -23,7 +23,7 @@
 - Frontend Code is in `./Code/frontend` folder
 
 # Demo
-[TODO ADD LINK TO DEMO] -> GENERATE QRCODE FOR DEMO / HOSTING
+[TODO ADD LINK TO DEMO] (LINK FOR DEMO)
 
 
 ## CI / Pipelines

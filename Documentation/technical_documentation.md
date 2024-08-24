@@ -16,7 +16,6 @@ ___
 4. [Installation Backend](#installation-backend)
 5. [Benutzung](#benutzung)
     - [Funktionen](#funktionen)
-    - [Beispiele](#beispiele)
 6. [API-Referenz](#api-referenz)
     - [Lokal](#lokal)
 
@@ -69,25 +68,21 @@ run database migration  # nur das erste Mal
 
 ## Benutzung
 
-TODO LINK ZM SCREENCAST
-Du siehst die Ansicht des Anbieters für Lebensmittel, die gerettet werden können. Mach ein Foto und trage das Haltbarkeitsdatum ein. Als Retter/in, gehe auf XXX. Dort siehst du die Lebensmittel, die zum Retter in deiner Umgebung bereitstehen. Wähle eines aus.
+Du siehst die Ansicht des Anbieters für Lebensmittel, die gerettet werden können. Mach ein Foto und trage das Haltbarkeitsdatum ein. Als Retter/in, gehe auf den anderen Tab. Dort siehst du die Lebensmittel, die zum Retter in deiner Umgebung bereitstehen. Wähle eines aus.
 
 ### Funktionen
 
 - Fotografieren von Lebensmitteln
 - Anzeige der zu rettenden Lebensmittel
 - Karte mit den räumlich zu dir am nächsten zu rettenden Lebensmitteln
-
-### Beispiele
-
-Lorem ipsum
+- Berechnung mit Distanz mit Haversine-Algorithmus
 
 ## API Referenz
 
-TODO: ADD LINK TO SWAGGER
-XXX
+Swagger der FastAPI.
 
 ### Lokal
+
 OpenAPI Client generieren (Docker und ZSH)
 
 ``` bash
