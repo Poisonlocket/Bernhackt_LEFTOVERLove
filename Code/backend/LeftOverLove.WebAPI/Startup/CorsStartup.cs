@@ -16,7 +16,8 @@ public static class CorsStartup
                             "http://localhost:5000",
                             "https://localhost:5001",
                             "http://localhost:5173",
-                            "https://localhost:5173"
+                            "https://localhost:5173",
+                            "https://{FRONTEND_DOMAIN}:443"
                         );
                     });
             });
