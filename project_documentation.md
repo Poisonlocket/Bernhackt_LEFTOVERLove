@@ -9,7 +9,7 @@ ___
 ## Ausgangslage
 
 Am diesjährigen BärnHäckt arbeitet Team **LEFTOVERLove** an der Challenge von
-Transgourmet ([Challenge](TODO:LINK "challenge description")), um **Transgourmet** beim Bekämpfen von Foodwaste zu
+Transgourmet ([Challenge](https://www.bernhackt.ch/challenges/2024-stopfoodwaste "challenge description")), um **Transgourmet** beim Bekämpfen von Foodwaste zu
 helfen. Dies hilf, Lebensmittelverschwendung und die resultierenden Kosten, sowie den negativen Impakt auf die Umwelt,
 zu verhindern. Die Lösung reiht sich nahtlos an bestehende Anti-Foodwaste Initiativen an, ohne diese zu kanibalisieren.
 Dabei vereint unsere Lösung ein unkompliziertes und dezetralisiertes Verteilen von Essen, das sonst weggeworfen würde,
@@ -41,22 +41,22 @@ sind.
 
 ## Technischer Aufbau
 
-### Komponente und Frameworks
+### Komponenten und Frameworks
 
-| Frontend | Backend | Datenbank |
-TODO: wie macht man eine Tabelle in Markdown, lol
+- ASPNet Core
+- Entity Framework
+- Automapper
+- VueJS
+- FastAPI
 
 ### Aufgabe pro Tool
 
-TODO: Mit unseren Tools ersetzen
-
-* Azure: Einfaches Hosting und Bereitstellen
-* Docker: Container Umgebung
-* Terraform: IaC
-* Blazor: Frontend
-* C# / .NET: Backend
-* Leaflet: Maps
-* Github Actions: CI / CD
+* C# / ASPNet Core: Backend
+* Entity Framework: DB Models
+* Automapper: Mapping Models to DTOs
+* VueJS: Frontend
+* FastAPI: API endpoints
+* ???: Hosting TODO DESCRIBE HOSTING
 
 ## Implementation
 
@@ -83,7 +83,7 @@ TODO: Fotos von unserem Progress (wichtig: immer mehr leere Flaschen auf dem Tis
 ## Mitwirkende
 
 - Yasin Gündüz
-- Christian Huber (TC)
+- Christian Huber
 - Matthias Oberholzer
 - Lorenzo Bonometti
 - Florence Meier

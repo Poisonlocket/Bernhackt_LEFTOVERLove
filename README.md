@@ -20,23 +20,24 @@ exit 0
 
 ## Quickstart
 
-### Prerequisuites
+### Prerequisites
 
-You need to install Net Core and pnpm
+You need to install AspNet Core, pnpm, Entity Framework, Automapper
 
-- https://dotnet.microsoft.com/en-us/download/dotnet/6.0
 - https://pnpm.io/installation
 
-Use dotnet version 6.0.400 TODO: NOTE DOWN VERSION
+Use dotnet version 8
 
 ### How to start
 
 Frontend
+
 ```
 cd <..._frontend>
 npm install
 ionic serve
 ```
+
 ### Existing Environments
 
 LocalDevelopment - `https://localhost:5000` TODO check port number
