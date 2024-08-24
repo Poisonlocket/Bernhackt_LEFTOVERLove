@@ -50,14 +50,20 @@ export default defineComponent({
       fileInput.value?.click();
     };
 
+    const getRandomValueBetween = (min:number, max:number) => {
+      return Math.random() * (max-min)+min;
+    };
+
     const createItem = async (image: ImageFile) => {
       try {
         // TODO: Exchange this one - get the user ID!
         const customerId = 1;
         const itemDto: CreateItemDto = {
+          // TODO: File
           description: "A pile of food",
-          longitude: "7.4474",
-          latitude: "46.9481",
+          // TODO: Get coords from image/gps
+          longitude: getRandomValueBetween(7.001, 7.901),
+          latitude: getRandomValueBetween(46.80, 47.30),
           expirationDate: new Date(),
           customerId: customerId,
         };
