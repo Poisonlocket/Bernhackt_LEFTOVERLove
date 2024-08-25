@@ -10,3 +10,4 @@
 Code/frontend/node_modules
 Code/backend/.vs
 Code/frontend/dist
+*.tar.gz
