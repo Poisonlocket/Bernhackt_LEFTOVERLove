@@ -13,7 +13,6 @@
       </ion-header>
       <ion-content>
         <Map @onMarkerClicked="markerClicked"/>
-
         <ion-modal ref="modal" :can-dismiss="canDismiss">
           <ion-header>
             <ion-toolbar>
