@@ -7,21 +7,18 @@
           <ion-icon aria-hidden="true" :icon="mapOutline" />
           <ion-label>Map</ion-label>
         </ion-tab-button>
-        
         <ion-tab-button tab="food" href="/tabs/food">
           <ion-icon aria-hidden="true" :icon="restaurantOutline" />
           <ion-label>Food</ion-label>
         </ion-tab-button>
-
         <ion-tab-button tab="upload" href="/tabs/upload">
           <ion-icon aria-hidden="true" :icon="shareOutline" />
           <ion-label>Share</ion-label>
         </ion-tab-button>
-
-        <ion-tab-button tab="user" href="/tabs/user">
+        <!-- <ion-tab-button tab="user" href="/tabs/user">
           <ion-icon aria-hidden="true" :icon="personCircleOutline" />
           <ion-label>User</ion-label>
-        </ion-tab-button>
+        </ion-tab-button> -->
       </ion-tab-bar>
     </ion-tabs>
   </ion-page>
