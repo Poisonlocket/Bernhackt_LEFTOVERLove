@@ -26,18 +26,20 @@
         </ion-list>
         
         <ion-button class="w-full mt-8" @click="openFilePicker">Upload image</ion-button>
-        <ion-button class="w-full mt-8">Submit data</ion-button>
+
+        <div v-if="uploadSuccess" class="heart-animation">❤️</div>
+        <div v-if="images.length" class="mt-8">
+          <div v-for="(image, index) in images" :key="index" class="flex flex-col items-center mb-4">
+            <img :src="image.url" :alt="image.name" />
+            <ion-button @click="createItem(image)">Sponsor your Food</ion-button>
+          </div>
+        </div>
         <input type="file" ref="fileInput" @change="onFileChange" style="display:none" multiple accept="image/*" />
+
+<!--        <ion-button class="w-full mt-8">Submit data</ion-button>-->
+
       </ion-content>
 
-      <div v-if="uploadSuccess" class="heart-animation">❤️</div>
-
-      <div v-if="images.length" class="mt-8">
-        <div v-for="(image, index) in images" :key="index" class="flex flex-col items-center mb-4">
-          <img :src="image.url" :alt="image.name" />
-          <ion-button @click="createItem(image)">Sponsor your Food</ion-button>
-        </div>
-      </div>
 
     </ion-content>
   </ion-page>
@@ -150,6 +152,10 @@ export default defineComponent({
 
 <style scoped>
 .heart-animation {
+  position: fixed;
+  z-index: 9999;
+  top: 50%;
+  left: 50%;
   font-size: 4em;
   color: red;
   animation: pulse 1s infinite;
