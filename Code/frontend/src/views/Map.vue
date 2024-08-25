@@ -12,7 +12,7 @@
         </ion-toolbar>
       </ion-header>
       <ion-content>
-        <Map :markerData="markerData" @onMarkerClicked="markerClicked" />
+        <Map @onMarkerClicked="markerClicked" />
 
         <ion-modal ref="modal" :can-dismiss="canDismiss">
           <ion-header>
@@ -63,6 +63,7 @@ import { defineComponent, defineEmits, ref } from 'vue';
 import { itemApi } from '@/lib/client'; 
 import Map from '@/components/Map.vue';
 import { Capacitor } from '@capacitor/core';
+import {ItemByIdIdGetRequest} from "@/lib/leftoverlove_client";
 
 const emits = defineEmits<{
   (event: "onMarkerClicked", info: any): void;
@@ -78,8 +79,9 @@ const loadItem = async (itemId: null) => {
     if (!itemId) {
       return null;
     }
-    
-    return await itemApi.itemByIdIdGet(itemId);
+
+    const request: ItemByIdIdGetRequest = {id: itemId};
+    return await itemApi.itemByIdIdGet(request);
   } catch (error) {
     console.error("Error loading item:", error);
     return null;
@@ -94,23 +96,4 @@ const markerClicked = async (item: any) => {
     }
   }
 };
-
-const markerData = [
-  {
-    coordinate: { lat: 46.94227090555359, lng: 7.440744738280579 },
-    title: "First Item",
-    description: "title one snippet content will be presented here",
-  },
-  {
-    coordinate: { lat: 46.960253240769944, lng: 7.460482860907267 },
-    title: "Second Item",
-    description: "another short text",
-  },
-  {
-    coordinate: { lat: 46.97021442933564, lng: 7.432154173280213 },
-    title: "Third Item",
-    description: "third snippet",
-  }
-];
-
 </script>

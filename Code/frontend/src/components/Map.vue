@@ -1,15 +1,10 @@
 <script>
 import { ref, onMounted, watch } from 'vue';
 import { GoogleMap } from '@capacitor/google-maps';
+import {itemApi} from "@/lib/client.ts";
 
 export default {
     name: 'MapComponent',
-    props: {
-        markerData: {
-            type: Array,
-            required: true
-        }
-    },
     setup(props, { emit }) {
         const mapRef = ref(null);
         let googleMap = null;
@@ -54,7 +49,16 @@ export default {
                     }
                 });
 
-                addMarkers(props.markerData);
+                const items = await itemApi.itemAllGet()
+                const markerData = items.map(itm =>({
+                  coordinate: {lat: itm.latitude, lng: itm.longitude},
+                  // TODO: We do not have a name?
+                  title: itm.description,
+                  description: itm.description,
+                }))
+
+
+                await addMarkers(markerData);
 
                 googleMap.setOnMarkerClickListener((event) => {
                     emit("onMarkerClicked", event);

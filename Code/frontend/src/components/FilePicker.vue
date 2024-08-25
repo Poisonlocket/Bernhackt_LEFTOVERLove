@@ -48,6 +48,7 @@ import { defineComponent, ref } from 'vue';
 import { IonPage, IonButton, IonDatetime, IonDatetimeButton, IonModal } from '@ionic/vue';
 import { itemApi } from "@/lib/client";
 import { CreateItemDto, ItemAddPicturesPostRequest, ItemCreatePostRequest } from "@/lib/leftoverlove_client";
+import {getRandomValueBetween} from "@/lib/misc";
 
 interface ImageFile {
   url: string;
@@ -69,7 +70,7 @@ const dataURLtoFile = (dataUrl: string, fileName: string): File => {
     u8arr[n] = bstr.charCodeAt(n);
   }
 
-  return new File([u8arr], fileName, {type: mime});
+  return new File([u8arr], fileName, { type: mime });
 };
 
 export default defineComponent({
@@ -85,10 +86,6 @@ export default defineComponent({
       fileInput.value?.click();
     };
 
-    const getRandomValueBetween = (min: number, max: number) => {
-      return Math.random() * (max - min) + min;
-    };
-
     const createItem = async (image: ImageFile) => {
       try {
         // TODO: Exchange this one - get the user ID!
@@ -97,8 +94,8 @@ export default defineComponent({
           // TODO: File
           description: "A pile of food",
           // TODO: Get coords from image/gps
-          longitude: getRandomValueBetween(7.001, 7.901),
-          latitude: getRandomValueBetween(46.80, 47.30),
+          longitude: getRandomValueBetween(7.44, 7.45),
+          latitude: getRandomValueBetween(46.94, 46.95),
           expirationDate: new Date(),
           customerId: customerId,
         };
@@ -135,6 +132,7 @@ export default defineComponent({
             reader.readAsDataURL(file);
           }
         });
+        console.log(images)
       }
     };
 
@@ -151,7 +149,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
 .heart-animation {
   font-size: 4em;
   color: red;
