@@ -23,37 +23,59 @@
     </ion-for>
     <ion-for v-if="loaded">
       <ion-card v-for="item in items" :key="item.id">
-        <img v-if="item.picturePaths?.length > 0" alt="" :src="pictureUrl(item.picturePaths[0])" />
+        <img v-if="item.assetUrl" alt="" :src="item.assetUrl"/>
         <ion-card-header>
           <ion-card-title>{{ item.description }}</ion-card-title>
-          <ion-card-subtitle>{{ item.creationDate }}</ion-card-subtitle>
-          <ion-card-subtitle>{{ item.expirationDate }}</ion-card-subtitle>
+          <ion-card-subtitle>Hinzugefügt: {{ item.creationDate.toLocaleDateString("de-CH") }}</ion-card-subtitle>
+          <ion-card-subtitle>Ablaufdatum: {{ item.expirationDate.toLocaleDateString("de-CH") }}</ion-card-subtitle>
         </ion-card-header>
-        <!-- <ion-card-content class="py-0 ion-padding">
-          <div>{{ item.description }}</div>
-        </ion-card-content> -->
         <ion-card-content>
-          <span>Geteilt von: {{ item.customerId }}</span>
+          <span>Geteilt von: Max Mustermann</span>
         </ion-card-content>
       </ion-card>
     </ion-for>
   </ion-list>
 </template>
 
-<script>
-import { ref, onMounted } from 'vue';
-import { itemApi } from '@/lib/client';
+<script lang="ts">
+import {ref, onMounted} from 'vue';
+
+interface CardContent {
+  id: number;
+  description: string;
+  assetUrl: string | null;
+  creationDate: string;
+  expirationDate: string;
+}
+
+import {itemApi, pictureUrl} from '@/lib/client';
+
 
 export default {
   name: 'Tab1Page',
   setup() {
     const pageTitle = ref('Items');
-    const items = ref([]);
+    const items = ref<CardContent[]>([]);
     const loaded = ref(false);
 
     onMounted(async () => {
       try {
-        items.value = await itemApi.itemAllGet();
+        const fetchedItems = await itemApi.itemAllGet();
+
+        items.value = fetchedItems.map(itm => {
+          let imageUrl = null;
+          if (itm.picturePaths?.length > 0) {
+            imageUrl = pictureUrl(itm.picturePaths[0]);
+          }
+          console.log(itm)
+          return {
+            id: itm.id,
+            description: itm.description,
+            creationDate: itm.creationDate,
+            expirationDate: itm.expirationDate,
+            assetUrl: imageUrl,
+          };
+        });
         loaded.value = true;
       } catch (error) {
         console.error('Error fetching items:', error);

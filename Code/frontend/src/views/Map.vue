@@ -114,7 +114,7 @@ const markerClicked = async (item: any) => {
       assetUrl: imageUrl,
       description: fetchedItem.description,
       title: fetchedItem.description,
-      dateCreated: fetchedItem.creationDate,
+      creationDate: fetchedItem.creationDate,
     }
 
     loadedData.value = modalContent;
