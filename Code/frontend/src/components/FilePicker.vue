@@ -1,6 +1,5 @@
 <template>
   <ion-page>
-
     <ion-content>
       <ion-header collapse="condense">
         <ion-toolbar>
@@ -24,14 +23,19 @@
             </ion-modal>
           </ion-item>
         </ion-list>
-        
         <ion-button class="w-full mt-8" @click="openFilePicker">Upload image</ion-button>
-
         <div v-if="uploadSuccess" class="heart-animation">❤️</div>
         <div v-if="images.length" class="mt-8">
           <div v-for="(image, index) in images" :key="index" class="flex flex-col items-center mb-4">
             <img :src="image.url" :alt="image.name" />
-            <ion-button @click="createItem(image)">Sponsor your Food</ion-button>
+            <ion-button @click="createItem(image)">
+              <div class="flex gap-1">
+                <span>Sponsor your food</span>
+                <ion-icon :icon="chevronForwardOutline"></ion-icon>
+              </div>
+            </ion-button>
+
+            
           </div>
         </div>
         <input type="file" ref="fileInput" @change="onFileChange" style="display:none" multiple accept="image/*" />
@@ -48,6 +52,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import { IonPage, IonButton, IonDatetime, IonDatetimeButton, IonModal } from '@ionic/vue';
+import { chevronForwardOutline } from 'ionicons/icons';
 import { itemApi } from "@/lib/client";
 import { CreateItemDto, ItemAddPicturesPostRequest, ItemCreatePostRequest } from "@/lib/leftoverlove_client";
 import {getRandomValueBetween} from "@/lib/misc";

@@ -32,11 +32,12 @@
               <img alt="" :src="loadedData.assetUrl"/>
               <ion-card-header>
                 <ion-card-title>{{ loadedData.title }}</ion-card-title>
-                <ion-card-subtitle>{{ loadedData.dateCreated }}</ion-card-subtitle>
               </ion-card-header>
               <ion-card-content class="h-full">
                 <!-- <span>{{ loadedData.id }}</span> -->
                 <div>{{ loadedData.description }}</div>
+                <div class="mt-4">Erstellt am: {{ loadedData.dateCreated }}</div>
+                <div class="mt-4">Ablaufdatum: {{ loadedData.expirationDate }}</div>
                 <div class="mt-4">
                   <ion-button class="w-full" color="primary">
                     <div class="flex gap-1">
@@ -92,6 +93,7 @@ const loadItem = async (itemId: null) => {
 
     const request: ItemByIdIdGetRequest = {id: itemId};
     return await itemApi.itemByIdIdGet(request);
+
   } catch (error) {
     console.error("Error loading item:", error);
     return null;
@@ -123,4 +125,5 @@ const markerClicked = async (item: any) => {
     modal.value.$el.present(loadedData);
   }
 };
+
 </script>
