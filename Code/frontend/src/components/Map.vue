@@ -5,12 +5,6 @@ import {itemApi} from "@/lib/client.ts";
 
 export default {
     name: 'MapComponent',
-    props: {
-        markerData: {
-            type: Array,
-            required: true
-        }
-    },
     setup(props, { emit }) {
         const mapRef = ref(null);
         let googleMap = null;
