@@ -63,6 +63,7 @@ import { defineComponent, defineEmits, ref } from 'vue';
 import { itemApi } from '@/lib/client'; 
 import Map from '@/components/Map.vue';
 import { Capacitor } from '@capacitor/core';
+import {ItemByIdIdGetRequest} from "@/lib/leftoverlove_client";
 
 const emits = defineEmits<{
   (event: "onMarkerClicked", info: any): void;
@@ -78,8 +79,9 @@ const loadItem = async (itemId: null) => {
     if (!itemId) {
       return null;
     }
-    
-    return await itemApi.itemByIdIdGet(itemId);
+
+    const request: ItemByIdIdGetRequest = {id: itemId};
+    return await itemApi.itemByIdIdGet(request);
   } catch (error) {
     console.error("Error loading item:", error);
     return null;
