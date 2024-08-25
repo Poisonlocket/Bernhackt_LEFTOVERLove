@@ -67,7 +67,6 @@ export default {
           if (itm.picturePaths?.length > 0) {
             imageUrl = pictureUrl(itm.picturePaths[0]);
           }
-          console.log(itm)
           return {
             id: itm.id,
             description: itm.description,
