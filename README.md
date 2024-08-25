@@ -2,20 +2,8 @@
 
 ## Documentation
 
-[BärnHäckt - Project Documentation](./Documentation/project_documentation.md)
+[BärnHäckt - Project Documentation](./Documentation/technical_documentation.md)
 
-## Prerequisites
-
-- PNPM installed: `npm install -g pnpm` or `brew install pnpm`
-- [PNPM Installation](https://pnpm.io/installation)
-- Ionic installed globally: `npm install -g @ionic/cli@latest native-run`
-
-## How to start frontend
-
-1. Clone the repository with `git clone [url]`
-2. Go to frontend folder `cd frontend`
-3. Run dependencies with `pnpm install`
-4. Start ionic project with `ionic serve`
 
 ## Development
 
@@ -25,28 +13,6 @@
 # Demo
 [TODO ADD LINK TO DEMO] (LINK FOR DEMO)
 
-
-## CI / Pipelines
-
-## Generate openapi client
-
-With Docker (zsh):
-
-```sh
-cd ./Code/frontend
-```
-
-```sh
-docker run --rm \
-  -v ${PWD}:/local openapitools/openapi-generator-cli generate \
-  -i /local/openapi.yml \
-  -g typescript-fetch \
-  -o /local/src/lib/leftoverlove_client
-```
-
-Note: if using zsh shell it is `{$PWD}` instead of `${PWD}`.
-
----
 
 ## Authors
 - [Github Christian Huber](https://github.com/jarheadcore)
