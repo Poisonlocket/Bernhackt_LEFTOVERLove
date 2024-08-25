@@ -27,15 +27,13 @@
         <div v-if="uploadSuccess" class="heart-animation">❤️</div>
         <div v-if="images.length" class="mt-8">
           <div v-for="(image, index) in images" :key="index" class="flex flex-col items-center mb-4">
-            <img :src="image.url" :alt="image.name" />
             <ion-button @click="createItem(image)">
               <div class="flex gap-1">
                 <span>Sponsor your food</span>
                 <ion-icon :icon="chevronForwardOutline"></ion-icon>
               </div>
             </ion-button>
-
-            
+            <img :src="image.url" :alt="image.name" />
           </div>
         </div>
         <input type="file" ref="fileInput" @change="onFileChange" style="display:none" multiple accept="image/*" />
