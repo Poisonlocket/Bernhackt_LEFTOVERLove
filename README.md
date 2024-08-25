@@ -10,8 +10,8 @@
 - Backend Code is in `./Code/backend` folder
 - Frontend Code is in `./Code/frontend` folder
 
-# Demo
-[TODO ADD LINK TO DEMO] (LINK FOR DEMO)
+# Link zur laufenden App
+[Try it out](https://leftoverlove.xn--gsps-noa.li/tabs/map "unsere app")
 
 
 ## Authors
