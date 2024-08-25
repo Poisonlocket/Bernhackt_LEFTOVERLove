@@ -12,7 +12,7 @@
         </ion-toolbar>
       </ion-header>
       <ion-content>
-        <Map @onMarkerClicked="markerClicked" />
+        <Map @onMarkerClicked="markerClicked"/>
 
         <ion-modal ref="modal" :can-dismiss="canDismiss">
           <ion-header>
@@ -29,7 +29,7 @@
           </ion-content>
           <ion-content v-if="loadedData">
             <ion-card>
-              <img alt="" :src="loadedData.assetUrl" />
+              <img alt="" :src="loadedData.assetUrl"/>
               <ion-card-header>
                 <ion-card-title>{{ loadedData.title }}</ion-card-title>
                 <ion-card-subtitle>{{ loadedData.dateCreated }}</ion-card-subtitle>
@@ -46,7 +46,7 @@
                   </ion-button>
                 </div>
               </ion-card-content>
-              
+
             </ion-card>
           </ion-content>
         </ion-modal>
@@ -57,22 +57,32 @@
 </template>
 
 <script setup lang="ts">
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonModal, IonLoading } from '@ionic/vue';
-import { chevronForwardOutline } from 'ionicons/icons';
-import { defineComponent, defineEmits, ref } from 'vue';
-import { itemApi } from '@/lib/client'; 
+import {IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonModal, IonLoading} from '@ionic/vue';
+import {chevronForwardOutline} from 'ionicons/icons';
+import {defineComponent, defineEmits, ref} from 'vue';
+import {itemApi, pictureUrl} from '@/lib/client';
 import Map from '@/components/Map.vue';
-import { Capacitor } from '@capacitor/core';
+import {Capacitor} from '@capacitor/core';
 import {ItemByIdIdGetRequest} from "@/lib/leftoverlove_client";
+import {getRandomPic} from "@/lib/pics";
 
 const emits = defineEmits<{
   (event: "onMarkerClicked", info: any): void;
 }>();
 
-const modal = ref(null);
-const loadedData = ref(null);
+interface ModalContent {
+  description: string;
+  assetUrl: string;
+  title: string;
+  dateCreated: string;
+}
 
-const dismiss = () => { modal.value.$el.dismiss() }
+const modal = ref(null);
+const loadedData = ref<ModalContent|null>(null);
+
+const dismiss = () => {
+  modal.value.$el.dismiss()
+}
 
 const loadItem = async (itemId: null) => {
   try {
@@ -90,10 +100,27 @@ const loadItem = async (itemId: null) => {
 
 const markerClicked = async (item: any) => {
   if (!Capacitor.isNativePlatform()) {
-    loadedData.value = await loadItem(item.markerId);
-    if (loadedData.value) {
-      modal.value.$el.present(loadedData);
+    const fetchedItem = await loadItem(item.markerId)
+    if (!fetchedItem) {
+      return;
     }
+
+    let imageUrl = getRandomPic();
+    if (fetchedItem.picturePaths?.length > 0) {
+      imageUrl = pictureUrl(fetchedItem.picturePaths[0]);
+    }
+    const modalContent: ModalContent = {
+      assetUrl: imageUrl,
+      description: fetchedItem.description,
+      title: fetchedItem.description,
+      dateCreated: fetchedItem.creationDate,
+    }
+
+    loadedData.value = modalContent;
+
+    console.log(modalContent);
+
+    modal.value.$el.present(loadedData);
   }
 };
 </script>
